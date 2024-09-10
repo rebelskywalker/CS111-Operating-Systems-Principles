@@ -1,0 +1,136 @@
+NAME: Chris Baker
+EMAIL: cbaker24@g.ucla.edu
+ID: 105180929
+
+(List of Files are after the Answers to Questions)
+README:
+
+**Questions
+
+*2.3.1:
+-I believe most cycles are spent performing lookups or inserting into
+the list. Synchronization becomes a larger issue as the number of threads
+increase, but if there is only a few then the locks is likely to be attained.
+
+-I believe this those list functions are likely culprits because of the
+time associated with performing those functions that could potentially be
+the bottleneck if it has to search the whole list. We could potentially
+move throughout the list two times for any one iteration.
+
+-For spin locks they are generally associated with being wasteful when
+a lock keeps spinning waiting for a chance at ownership of the critical
+section. Only one thread may have the lock, and during any ownership switch
+the others will spin and waste cycles.
+
+-In the high thread mutex cases most cycles are spent as a cost of using
+the mutex function. Mutexes are generally more expensive as we saw in the
+previous lab for initial numbers. They can require many cycles especially
+with all tryng to access the same lock.
+
+*2.3.2
+-The lines of code that use the most cpu time for spin locks are the
+while(__sync_lock_test_and_set(lock + hash, 1));
+
+-Because as number of threads increase so does the amount of
+competitors fighting for cpu. In order to handle this correctly
+the critical section must be protected. So, cycles are wasted constantly
+spinning as well as constant checks to see if the resource is available.
+
+*2.3.3
+-As the number of lists increase there is a higher number of blocks that
+are performed on the critical section to protect the locking function. This
+function can already be intensive on the cpu especially with context switches
+that can make this overhead worse. As the number of threads increases we can
+expect that many will try to obtain the lock while one holds it at a time. The
+odds of any thread getting the lock will decrease. The time spent waiting for
+the lock will generally increase with threads (unless its really lucky new thread)
+
+-Completion time per op rises less dramatically with number of fighting threads
+because there is at least one thread performing some type of work. If there is
+only one thread then that thread is subject to all the time costs of any
+blocking that could come from interrupts or faults. Thus, that thread takes
+on the full load like a lone wolf. However, many threads diffuse this task
+and another can perform if one if blocked.
+
+-Wait time per op can be higher then completion time per op because each
+thread has its own seperate time spent waiting. The total sum of these
+individual times added with the wait time share intersections like that in
+set theory. We may be double counting certain wait periods especially with
+multiple threads waiting at any given moment. However, the completion time is
+seperate and is kept track of in the main original parent thread and does
+not rise as quickly.
+
+*2.3.4
+-As lists increase the performance improves. This is because the time
+wasted on waiting for locks is diminished. Threads can run in parallel with
+the extra lists and perform more work with less switches, spins or, costly
+mutex ops. Thus, there is more throughput
+
+-As the number of lists increases more the throughput will keep increasing, but
+at some point it will be bounded. This bound may be a result of each element
+splitting the list into segments to have its own piece. At this point the threads
+become independant. Thus, they run without waiting and throughput no longer
+increases
+
+-N way partitioned list should be soemwhat equivalent to throughput of a
+single list with less then 1/n threads. The lines on the graphs show that
+the values are nearly mirrored and appear that if we extended the grapph
+they could eventually bound to close values.
+
+
+Files:
+lab2_list.c:
+*C program to run the doubly linked list and perform the tests
+*Uses both SortedList.c and SortedList.h functionality.
+
+SortedList.h:
+*Provided by Lab to outline function for the list.c program and SortedList.c
+*These functions are linked and used to carry out the Sorted Linked List
+
+SortedList.c:
+*C program to implement the code for insert, lookup, length and delete
+*Fulfills the code provided in SortedList.h
+
+lab2b_list.csv:
+*Table containing values from running 'make tests' from the makefile
+*This has the lab2b_list.gp grep and extract information to create PNG files
+
+lab2b_list.gp
+*execute gnuplot to graph values from the csv files for lab2b_list
+*can run this using the makefile to generate the graphs
+*Modified from previous lab to grep desired data
+
+Makefile
+*default and *build - build lab2_add , lab2_list from C programs
+*graphs - execute gnuplot using provided scripts: lab2_add.gp , lab2_list.gp
+*dist - creates tarball for submission
+*tests - tests lab2_add , lab2_list, values are sent to csv files
+*clean - removes programs created by Makefile
+*profile - to run tests with the gperf 2.7 tools and generates report
+
+profile.out - shows generated reports for time spent
+
+Resources:
+Pthreads:
+https://www.youtube.com/watch?v=sD__p9cbQpc
+https://computing.llnl.gov/tutorials/pthreads/
+
+Compare and Swap:
+https://gcc.gnu.org/onlinedocs/gcc-4.1.1/gcc/Atomic-Builtins.html
+
+Clockgettime:
+http://man7.org/linux/man-pages/man2/clock_getres.2.html
+
+man pages: clock_gettime(2), gnuplot(1)
+
+GCC atomic builtins
+
+Doubly Linked List:
+https://www.geeksforgeeks.org/insert-value-sorted-way-sorted-doubly-linked-list/
+https://stackoverflow.com/questions/43086771/linked-list-how-to-sort-doubly-linked-list
+https://www.tutorialspoint.com/data_structures_algorithms/doubly_linked_list_algorithm.htm
+
+Arpaci Book
+
+Questions on performance:
+http://sape.inf.usi.ch/sites/default/files/publication/ispass09.pdf
