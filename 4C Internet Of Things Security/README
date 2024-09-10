@@ -1,0 +1,83 @@
+NAME: Chris Baker
+EMAIL: cbaker24@g.ucla.edu
+ID: 105180929
+
+FILES: 
+
+lab4c_tcp.c
+*This program is intended to perform an unencrypted communication with
+the specified ucla server for TCP. 
+*In addition to lab4b several options have been added including the host, id,
+and port number.
+*A TCP connection is made at the appropriate port and address and is meant to
+log the temperature data colelcted from beaglebone sensor and terminating with
+newline chars.
+* Several error checks are made to determine that the above mandatory options are
+set, the connection is made, the buffer is holding data and other relevant checks
+to correctly process and log the temperatures.
+*C program that builds and executes on beaglebone, uses lmraa flag
+
+lab4c_tls.c
+*This program is similar to the above one, but this operates on a TLS connection
+*This handles an encrypted communication with the server using the appropriate
+address and port to determine the logging of temperature data.
+*This C program builds and executes on the beaglebone also: uses lmraa flag
+*This program incoporates the lcrypto flag to encrypt
+
+MakeFile
+*Includes 3 targets to make the c programs above into executables
+**default - builds both executable programs
+**clean- deletes the programs and returns the directory to a pre-made snapshot
+state (before any file creations as the result of any of these makefile commands).
+**dist - creates a distributable tarball that allows us to combine with the
+bash sanity script file to check a mock successful version of our program. We
+passed the check
+
+README
+*This file which gives a brief overview of included files and details provided
+by them
+
+passed.PNG
+*A png showing a passed sanity script if this helps/contributes to grading at all
+
+---------------------------------------------------------------------
+Sources/Notes:
+*Note that some sources are included inline in the programs, or were referenced
+from previous submission in lab4b
+**
+Open winscp for linux server and beaglebone
+Open putty for linux and beaglebone
+Write codes on linux
+Use winscp to copy the files from linux server to beaglebone
+Start testing on beaglebone
+*had to download the ssl library using
+*sudo apt-get install libssl-dev
+
+for installing ssl - to run make file commands and test sanity on beaglebone:
+https://stackoverflow.com/questions/17915098/openssl-ssl-h-no-such-file-or-directory-during-installation-of-git
+
+For server:
+Check out the "serverinfo.html" file
+
+Sockets:
+https://www.youtube.com/watch?v=LtXEMwSG5-8&t=1315s
+https://www.geeksforgeeks.org/socket-programming-cc/
+
+Sockets and Dup:
+https://stackoverflow.com/questions/54116344/how-to-swap-two-open-file-descriptors
+
+time:
+https://en.wikipedia.org/wiki/C_date_and_time_functions
+https://www.geeksforgeeks.org/time-function-in-c/
+
+Others:
+http://iotdk.intel.com/docs/master/mraa/aio_8h.html
+https://www.tutorialspoint.com/unix_system_calls/poll.htm
+https://man7.org/linux/man-pages/man2/poll.2.html
+
+SSL/TLS:
+https://wiki.openssl.org/index.php/Simple_TLS_Server
+https://aticleworld.com/ssl-server-client-using-openssl-in-c/
+http://h30266.www3.hpe.com/odl/axpos/opsys/vmsos84/BA554_90007/ch05s04.html
+https://wiki.openssl.org/index.php/Simple_TLS_Server
+
