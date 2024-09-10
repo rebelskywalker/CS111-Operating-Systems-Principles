@@ -1,0 +1,26 @@
+NAME: Chris Baker
+EMAIL: cbaker24@g.ucla.edu
+ID: 105180929
+
+FILES:
+
+smoketest.sh - Bash file that incorporates elementary tests to check if each
+option is being processed, if data is being logged, and if all tests are passed.
+
+lab4b.c - C source file that runs on a board such as the beaglebone green wireless
+and implements the sensors with the base cape to collect data on ambient temp.
+Successully builds and executes.
+
+Makefile - Contains the 4 targets listed below:
+default- Builds the program using Wall and Wextra flags to make executable o file
+clean- Deletes any files created during the make process tha built extra files in
+the directory.
+check- Performs the attach smoketest.sh to check if program passes general testing
+of communication with sensors
+dist- Creates the tarball with the contained files
+
+PNG FILES:
+smoketests.PNG - Shows successful passing of smoketests
+
+period_and_scale_tests.PNG - shows successful options use on shell using all
+options with two different values.
