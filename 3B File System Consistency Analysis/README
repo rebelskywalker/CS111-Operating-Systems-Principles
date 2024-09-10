@@ -1,37 +1,36 @@
-NAME: Roselyn Lee,Chris Baker
-EMAIL: 
-ID:
+NAME: Roselyn Lee, Chris Baker
+EMAIL: roselyn.lee@gmail.com, cbaker24@g.ucla.edu
+ID: [Your ID Here]
 
-Files:
--------------------------------------------------------------------
-Makefile:
-file used to make targets below:
+## Files
 
-**default - builds lab3b from the source file
+### Makefile
+- **default**: Builds the `lab3b` executable from the `lab3b.py` source file. This command creates a symbolic link named `lab3b` to `lab3b.py` and sets it as executable.
+- **clean**: Removes the `lab3b` executable and any existing tarball, returning the directory to its state before any make commands were executed.
+- **dist**: Creates a tarball named `lab3b-999999999.tar.gz` containing `lab3b.py`, `README`, and `Makefile`.
 
-**clean - removes the tar file and executable file returning
-the directory to the untarred state prior to any make commands
+### lab3b.py
+A Python 3 script that performs a consistency analysis on a file system summary file. It checks for inconsistencies in:
+- **Invalid Blocks**: Blocks that are not valid according to the file system.
+- **Reserved Blocks**: Blocks that should not be used.
+- **Allocated Blocks**: Blocks that are allocated but not on the free list.
+- **Unreferenced Blocks**: Blocks that are not referenced anywhere but are not on the free list.
+- **Duplicate Blocks**: Blocks that are referenced by multiple inodes.
+- **Inodes**: Checks if inodes are properly allocated and if they are present in the free list.
+- **Directories**: Ensures directories are consistent with inode allocations and directory entries.
 
-**dist - builts the distributable tar ball holding all the files
-mentioned in this makefile
+### README
+This file provides information on the files included in the tarball and their purposes.
 
-lab3b.py:
-A python 3 source file used to check the consistency analysis
-of Invalid Blocks, Reserved Blocks, Allocated Blocks, Unreferenced
-Blocks, Duplicate Blocks, Inodes, and Directories. Compares with
-expected results and checks for inconsistency.
+## Sources
+- **sys module documentation**: https://docs.python.org/3/library/sys.html
+- **re module documentation**: https://docs.python.org/3/library/re.html
+- **Regular Expressions Overview**: http://users.cs.cf.ac.uk/Dave.Marshall/Internet/NEWS/regexp.html
+- **Executing Main**: https://stackoverflow.com/questions/419163/what-does-if-name-main-do
 
-README:
-This file, used to provide information on the files
-included in the tarball and a brief description of their purpose.
---------------------------------------------------------------------
-Sources:
-sys. commands:
-https://docs.python.org/3/library/sys.html
+## Execution
+To build and run the script, use the following commands:
 
-regexp:
-https://docs.python.org/3/library/re.html
-http://users.cs.cf.ac.uk/Dave.Marshall/Internet/NEWS/regexp.html
-
-Executing Main:
-https://stackoverflow.com/questions/419163/what-does-if-name-main-do
+1. **Build the executable**:
+   ```bash
+   make
