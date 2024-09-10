@@ -15,7 +15,7 @@ the threads are more likely to complete time slices and lead to less errors.
 -With more iterations we produce more likelihood or race condition
 by providing many options to the scheduler.
 -Many threads means many divisions of the main task, so there are more
-likely to have smalelr poritions comlpleted in any given threads turn.
+likely to have smaller poritions completed in any given threads turn.
 
 +Small numbers of iterations seldom fail because the threads are likely
 to complete the accumulation (few threads accessing and adding the variable)
