@@ -1,0 +1,37 @@
+NAME: Roselyn Lee,Chris Baker
+EMAIL: roselyn.lee@gmail.com,cbaker24@g.ucla.edu
+ID:705084326,105180929 
+
+Files:
+-------------------------------------------------------------------
+Makefile:
+file used to make targets below:
+
+**default - builds lab3b from the source file
+
+**clean - removes the tar file and executable file returning
+the directory to the untarred state prior to any make commands
+
+**dist - builts the distributable tar ball holding all the files
+mentioned in this makefile
+
+lab3b.py:
+A python 3 source file used to check the consistency analysis
+of Invalid Blocks, Reserved Blocks, Allocated Blocks, Unreferenced
+Blocks, Duplicate Blocks, Inodes, and Directories. Compares with
+expected results and checks for inconsistency.
+
+README:
+This file, used to provide information on the files
+included in the tarball and a brief description of their purpose.
+--------------------------------------------------------------------
+Sources:
+sys. commands:
+https://docs.python.org/3/library/sys.html
+
+regexp:
+https://docs.python.org/3/library/re.html
+http://users.cs.cf.ac.uk/Dave.Marshall/Internet/NEWS/regexp.html
+
+Executing Main:
+https://stackoverflow.com/questions/419163/what-does-if-name-main-do
