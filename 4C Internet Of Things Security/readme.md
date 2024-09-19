@@ -40,4 +40,4 @@ Project 4C highlights the importance of securing IoT devices against potential a
 
 ---
 
-Feel free to explore the provided code and documentation to understand the implementation details and testing processes. For any inquiries or further discussions, please reach out via the contact details in the README file.
+Feel free to explore the provided code and documentation to understand the implementation details and testing processes.
